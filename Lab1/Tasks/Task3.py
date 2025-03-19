@@ -5,7 +5,7 @@ def create_array(n):
         print("The number you entered is not greater than 0.")
         exit()
 
-    array = [random.randint(-100, 100) for i in range(n)]
+    array = [random.randint(-50, 50) for i in range(n)]
     print("The array is: ", array)
     return array
 
@@ -29,9 +29,12 @@ def second_task(array): #Calculate the arithmetic mean of paired elements in the
     print("The count of paired elements in the array is: ", count)
     print("The arithmetic mean of paired elements in the array is: ", sum / count)
 
-def third_task(array): #Move all elements except the first one in reverse order
-    array[1:] = array[1:][::-1]
-    print("The array with all elements except the first one in reverse order is: ", array)
+def third_task(array): #Move all non-zero elements 
+    non_zero = iter([i for i in array if i != 0][::-1])
+    for index in range(len(array)):
+        if array[index] != 0:
+            array[index] = next(non_zero)
+    print("The array with reversed non-zero elements is: ", array)
 
 def main():
     n = int(input("Enter a count of numbers in the array: "))
