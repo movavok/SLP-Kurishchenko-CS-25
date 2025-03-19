@@ -6,5 +6,4 @@ if n <= 0:
 else:
     for i in range(2, 2*n + 1, 2):
         y = int(i * y)
-
-print("The result 'y' is: ", y)
+    print("The result 'y' is: ", y)
