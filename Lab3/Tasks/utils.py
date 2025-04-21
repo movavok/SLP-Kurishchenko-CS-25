@@ -80,6 +80,12 @@ def createFile(fileName):
     else:
         print(f"Файл '{fileName}' вже існує.")
 
+def clearScreen():
+    """
+    Очистити екран.
+    """
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 def showInfo(fileName):
     """
     Вивести інформацію про студентів.
@@ -106,7 +112,8 @@ def addStudent(fileName):
     number = lastRow + 1
     surname = input("Введіть прізвище студента: ").strip()
     name = input("Введіть ім'я студента: ").strip()
-    score = float(input("Введіть середній бал студента: "))
+    score = input("Введіть середній бал студента: ")
+    score = float(score.replace(",", "."))
     if not surname: return print("Прізвище не може бути порожнім.")
     if not name: return print("Ім'я не може бути порожнім.")
     if score < 0 or score > 100: return print("Середній бал повинен бути в межах від 0 до 100.")
@@ -187,6 +194,7 @@ def groupLoop(fileName):
     """
     Цикл для роботи з групою.
     """
+    groupMenu()
     enteredSymbol = input("Меню групи \\ Ввести: ")
     match enteredSymbol:
         case "1":
@@ -213,7 +221,6 @@ def mainLoop():
         case "1":
             fileName = enterGroup() 
             createFile(fileName)
-            groupMenu()
             groupLoop(fileName)
         case "0":
             exit()
