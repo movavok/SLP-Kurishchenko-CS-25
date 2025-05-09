@@ -109,7 +109,6 @@ class HomeLibrary:
                 if year: found_books = [book for book in found_books if book.year == year]
                 if genre: found_books = [book for book in found_books if book.genre == genre]
 
-            # Вывод результата
             if found_books:
                 print("Found books:")
                 for book in found_books:
