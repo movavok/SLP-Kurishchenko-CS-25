@@ -33,7 +33,7 @@ def freqWordCounter(page):
     for idx, (word, count) in enumerate(sorted_word_count[:30], 1):
         print(f"\t{idx}. {word}: {count}")
 
-def freqTegCounter(page):
+def freqTagCounter(page):
     """
     This function counts the frequency of tags in the HTML content.
     """
@@ -64,7 +64,7 @@ def loop():
         page = getHtml()
         print("Page title:", page.title.string)
         freqWordCounter(page)
-        freqTegCounter(page)
+        freqTagCounter(page)
         print("Number of links:", Amount(page, 'a'))
         print("Number of images:", Amount(page, 'img'))
         cont = input("Do you want to continue? (y/n): ")
