@@ -2,6 +2,12 @@ from numpy import *
 import matplotlib.pyplot as plt
 
 def showFunPlot(t, y):
+    """
+    Function to plot the function y = cos(t^2)/t
+    :param t: array of t values
+    :param y: function values
+    :return: None
+    """
     plt.plot(t, y, 'r-', label='cos(t^2)/t')
     plt.plot(t, y, 'k*', label='data points')    
     plt.axis([0, 5, -1, 10])
@@ -15,12 +21,23 @@ def showFunPlot(t, y):
     plt.show()
 
 def autoLoad(fileName, text):
+    """
+    Function to load text from a file if the input is '1'
+    :param fileName: name of the file to load
+    :param text: input text
+    :return: text
+    """
     if text.strip() == "1":
         with open(fileName, 'r', encoding="utf-8") as file:
             text = file.read()
     return text
 
 def showLetterFreqPlot(text):
+    """
+    Function to plot the frequency of letters in a text
+    :param text: input text
+    :return: None
+    """
     text = autoLoad("test_sentence.txt", text).lower()
     freq = {}
     for letter in text:
@@ -38,6 +55,11 @@ def showLetterFreqPlot(text):
     plt.show()
 
 def showSenTypesPlot(text):
+    """
+    Function to plot the frequency of sentence types in a text
+    :param text: input text
+    :return: None
+    """
     text = autoLoad("test_sentence.txt", text).lower()
     counts = {'.': 0, '?': 0, '!': 0, '...': 0}
 
@@ -65,6 +87,10 @@ def showSenTypesPlot(text):
 
 
 def run():
+    """
+    Main function to run the program
+    :return: None
+    """
     t = linspace(0, 5, 51)
     y = cos(t**2) / t
     showFunPlot(t, y)
