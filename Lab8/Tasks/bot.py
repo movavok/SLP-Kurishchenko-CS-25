@@ -1,15 +1,16 @@
 import telebot
+from safe import token
 
-bot = telebot.TeleBot('7674383736:AAFNTiAXq2yGghi-QrQEQeuJxOhKJWZrlC8') #токен бота
+bot = telebot.TeleBot(token)
 
-@bot.message_handler(commands=['start']) #реакція чат бота
+@bot.message_handler(commands=['start']) #/start 
 def start_message(message):
     bot.send_message(message.chat.id, 
 """📞 Привіт! Я *Телефончик* — твій бот-помічник.  
 Введи /help, щоб дізнатись, що я вмію.  
 👂 Я слухаю тебе уважно...""", parse_mode='Markdown')
     
-@bot.message_handler(commands=['help']) #реакція чат бота
+@bot.message_handler(commands=['help']) #/help
 def help_message(message):
     bot.send_message(message.chat.id, 
 """/time — Показати поточний час
@@ -19,20 +20,20 @@ def help_message(message):
 /clear — Очистити чат
 /stop — Зупинити бота""", parse_mode='Markdown')
 
-@bot.message_handler(commands=['time']) #реакція чат бота
+@bot.message_handler(commands=['time']) #/time
 def time_message(message):
     import datetime as dt
     now = dt.datetime.now()
     current_time = now.strftime("%H:%M:%S")
     bot.send_message(message.chat.id, f"🕒 Поточний час: {current_time}")
 
-@bot.message_handler(commands=['echo']) #реакція чат бота
+@bot.message_handler(commands=['echo']) #/echo text
 def echo_message(message):
     text = message.text.split(' ', 1)
     if len(text) > 1: bot.send_message(message.chat.id, f"🔊 {text[1]}")
     else: bot.send_message(message.chat.id, "🔈 ")
 
-@bot.message_handler(commands=['sticker']) #реакція чат бота
+@bot.message_handler(commands=['sticker']) #/sticker
 def sticker_message(message):
     import random as r
     stickers = [
@@ -48,15 +49,15 @@ def sticker_message(message):
     sticker_id = r.choice(stickers)
     bot.send_sticker(message.chat.id, sticker_id)
 
-@bot.message_handler(commands=['github']) #реакція чат бота
+@bot.message_handler(commands=['github']) #/github
 def github_message(message): bot.send_message(message.chat.id, "🔗 *Мій GitHub:* [movavok](https://github.com/movavok)", parse_mode='Markdown')
 
-@bot.message_handler(commands=['stop'])
+@bot.message_handler(commands=['stop']) #/stop
 def stop_message(message):
     bot.send_message(message.chat.id, "👋 Бувай! Якщо захочеш повернутись — ввімкни мене знову.")
     bot.stop_polling()
 
-@bot.message_handler(commands=['clear'])
+@bot.message_handler(commands=['clear']) #/clear
 def clear_message(message):
     try:
         for i in range(message.message_id, 0, -1):
@@ -67,7 +68,7 @@ def clear_message(message):
 
 def unknown_message(message): bot.send_message(message.chat.id, "🤔 Я не знаю, що з цим робити. Введи /help, щоб дізнатись, що я вмію.")
 
-@bot.message_handler(content_types=['text'])
+@bot.message_handler(content_types=['text']) #розпізнавання тексту
 def handle_specific_text(message):
     text = message.text.lower()
     if text in ["привіт", "доброго ранку", "доброго дня", "доброго вечора", "привіт!"]: bot.send_message(message.chat.id, "👋 Вітаю! /help, щоб дізнатись, що я вмію.")
