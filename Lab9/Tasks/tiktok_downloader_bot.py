@@ -1,8 +1,8 @@
 import telebot
 import requests
-from safe import token
+from safe import tt_token
 
-bot = telebot.TeleBot(token)
+bot = telebot.TeleBot(tt_token)
 
 @bot.message_handler(commands=['start'])
 def start_message(message):

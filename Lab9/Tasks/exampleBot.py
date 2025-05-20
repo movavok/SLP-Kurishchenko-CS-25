@@ -1,10 +1,10 @@
 import telebot
-from safe import token
+from safe import exm_token
 from pyowm import OWM
 from pyowm.utils.config import get_default_config
 
 
-bot = telebot.TeleBot(token)
+bot = telebot.TeleBot(exm_token)
 config_dict = get_default_config()
 config_dict['language'] = 'ua'
 owm = OWM( '0f8480e94c08f6fa663ead777cd2ee53', config_dict )
