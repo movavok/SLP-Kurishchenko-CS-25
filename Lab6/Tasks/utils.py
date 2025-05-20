@@ -11,6 +11,7 @@ def getHtml():
         if r.status_code != 200:
             print("Error: Unable to access the link.")
             continue
+        r.encoding = 'utf-8'
         return BeautifulSoup(r.text, 'html.parser')
     
 def freqWordCounter(page):
