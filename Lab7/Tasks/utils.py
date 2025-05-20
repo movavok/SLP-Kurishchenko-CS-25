@@ -17,7 +17,7 @@ def showFunPlot(t, y):
     plt.legend()
     plt.grid(True, linestyle='--', alpha=0.7)
     plt.tight_layout()
-    plt.savefig('../Plots/firstTaskPlot.png', dpi=200)
+    plt.savefig('Lab7/Plots/firstTaskPlot.png', dpi=200)
     plt.show()
 
 def autoLoad(fileName, text):
@@ -38,7 +38,7 @@ def showLetterFreqPlot(text):
     :param text: input text
     :return: None
     """
-    text = autoLoad("test_sentence.txt", text).lower()
+    text = autoLoad("Lab7/Tasks/test_sentence.txt", text).lower()
     freq = {}
     for letter in text:
         if letter.isalpha():
@@ -51,7 +51,7 @@ def showLetterFreqPlot(text):
     plt.ylabel('Frequency')
     plt.title('Letter Frequency')
     plt.tight_layout()
-    plt.savefig('../Plots/secondTaskPlot.png', dpi=200)
+    plt.savefig('Lab7/Plots/secondTaskPlot.png', dpi=200)
     plt.show()
 
 def showSenTypesPlot(text):
@@ -60,7 +60,7 @@ def showSenTypesPlot(text):
     :param text: input text
     :return: None
     """
-    text = autoLoad("test_sentence.txt", text).lower()
+    text = autoLoad("Lab7/Tasks/test_sentence.txt", text).lower()
     counts = {'.': 0, '?': 0, '!': 0, '...': 0}
 
     i = 0
@@ -82,7 +82,7 @@ def showSenTypesPlot(text):
     plt.ylabel('Count')
     plt.title('Punctuation Sequence Types Frequency')
     plt.tight_layout()
-    plt.savefig('../Plots/thirdTaskPlot.png', dpi=200)
+    plt.savefig('Lab7/Plots/thirdTaskPlot.png', dpi=200)
     plt.show()
 
 
@@ -91,7 +91,7 @@ def run():
     Main function to run the program
     :return: None
     """
-    t = linspace(0, 5, 51)
+    t = linspace(0.001, 5, 51)
     y = cos(t**2) / t
     showFunPlot(t, y)
     showLetterFreqPlot(input("Enter a text to count letter frequency (enter 1 to auto): "))
