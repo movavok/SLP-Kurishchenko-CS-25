@@ -1,6 +1,26 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
+def handleUsername():
+    username = input("Введіть ім'я користувача: ")
+    if not username:
+        print("Ім'я користувача не може бути порожнім.")
+        return None
+    return username
+
+def main_menu():
+    print("Вітаємо у соціальній мережі GitHub!")
+    print("1. Вивести користувачів")
+    print("2. Вивести дружні зв’язки")
+    print("3. Вивести граф соціальної мережі")
+    print("0. Вийти")
+
+    choice = input("Виберіть опцію (0-3): ")
+    if not (choice >= "0" and choice <= "3"):
+        print("Невірний вибір. Спробуйте ще раз.")
+        return main_menu()
+    return choice
+
 def draw_social_graph(network):
     # Виводимо користувачів
     for uid, user in network.users.items():
@@ -36,3 +56,15 @@ def draw_social_graph(network):
     plt.axis('off')
     plt.tight_layout()
     plt.show()
+
+def loop(parser):
+    network = parser.fetch_extended_network(handleUsername())
+    if not network:
+        print("Не вдалося отримати дані користувача або його друзів.")
+        return loop()
+    match main_menu():
+        case "1": return
+        case "2": return
+        case "3": draw_social_graph(network)
+        case "0": return
+        case _: loop(parser)

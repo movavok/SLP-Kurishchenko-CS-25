@@ -9,5 +9,5 @@ class User:
     def addFriend(self, friendId):
         if friendId not in self.friendsList: self.friendsList.append(friendId)
     def removeFriend(self, friendId): 
-        if friendId in self.friendsList: self.friendsList.discard(friendId)
+        if friendId in self.friendsList: self.friendsList.remove(friendId)
     def getFriends(self): return self.friendsList

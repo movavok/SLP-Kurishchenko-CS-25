@@ -17,19 +17,27 @@ class DataParser:
         response = requests.get(url, headers=self.headers)
         return response.json()
 
-    def fetch_user_and_friends(self, username) -> SocialNetwork:
+    def fetch_extended_network(self, username) -> SocialNetwork:
         network = SocialNetwork()
 
         user_data = self.get_user_data(username)
-        user = User(user_data["id"], user_data["login"], [])
-        network.addUser(user)
+        main_user = User(user_data["id"], user_data["login"], [])
+        network.addUser(main_user)
 
-        friends = self.get_following(user_data["login"])
-        for f in friends:
-            friend_user = User(f["id"], f["login"], [])
-            network.addUser(friend_user)
+        # Перший рівень — друзі користувача
+        level1_friends = self.get_following(username)
 
-            # встановлюємо дружбу
-            network.addFriendship(user.id, friend_user.id)
+        for f in level1_friends:
+            friend = User(f["id"], f["login"], [])
+            network.addUser(friend)
+            network.addFriendship(main_user.id, friend.id)
+
+            # Другий рівень — друзі друга
+            friend_following = self.get_following(friend.username)
+
+            for ff in friend_following:
+                ff_user = User(ff["id"], ff["login"], [])
+                network.addUser(ff_user)
+                network.addFriendship(friend.id, ff_user.id)
 
         return network
