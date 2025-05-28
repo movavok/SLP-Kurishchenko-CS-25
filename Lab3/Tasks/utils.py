@@ -80,12 +80,6 @@ def createFile(fileName):
     else:
         print(f"Файл '{fileName}' вже існує.")
 
-def clearScreen():
-    """
-    Очистити екран.
-    """
-    os.system('cls' if os.name == 'nt' else 'clear')
-
 def showInfo(fileName):
     """
     Вивести інформацію про студентів.
