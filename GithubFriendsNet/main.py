@@ -1,4 +1,4 @@
-from classes.classDataParser import DataParser
+from classes import DataParser
 from interface import loop
 from dotenv import load_dotenv
 import os

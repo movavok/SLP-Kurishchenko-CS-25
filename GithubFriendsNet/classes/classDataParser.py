@@ -1,5 +1,4 @@
-from classes.classUser import User
-from classes.classSocialNetwork import SocialNetwork
+from classes import User, SocialNetwork
 import requests
 
 class DataParser:
