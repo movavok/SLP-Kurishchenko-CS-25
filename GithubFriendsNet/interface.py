@@ -143,6 +143,11 @@ def loop(parser):
             case "4": # Додати користувача
                 username = handleUsername()
                 if username:
+                    # Перевіряємо, чи вже існує користувач з таким ім'ям
+                    user_exists = any(user.username == username for user in network.users.values())
+                    if user_exists:
+                        print(f"Користувач {username} вже існує в мережі.")
+                        continue
                     new_network = parser.fetch_user_and_friends(username)
                     if new_network:
                         network.users.update(new_network.users)
